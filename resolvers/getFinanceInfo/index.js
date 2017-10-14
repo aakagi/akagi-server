@@ -12,33 +12,29 @@ const SAVING_PARAMS = [
 
 // Returns debit - credit
 function getNetWorth({ huntington, discover = 0, misc = 0 }) {
-  return huntington + misc - discover
+  const debit = huntington + misc
+  return debit - discover
 }
 
 // Gets reference point date
 function getCompareDate(month, year) {
   // Get next month if month not specified
-  if(!month && !month == 0) {
+  if (!month && !month === 0) {
     return moment().add(1, 'month')
   }
-  else {
-    // Init compare month
-    let compareDate = moment().month(month)
 
-    // Assumes this year if year not specified
-    if(year) {
-      compareDate.setYear(year)
-    }
-    return compareDate
-  }
+  // Set compare month & year
+  return year
+    ? moment().year(year).month(month)
+    : moment().month(month)
 }
 
 function calculateSavings({ compareDate, perMonth, startSaving, endSaving }) {
   const startMonthDiff = compareDate.diff(startSaving, 'months') // rounds down positive
   const endMonthDiff = compareDate.diff(endSaving, 'months')
-  
+
   // If negative, saving period has not started yet
-  if(startMonthDiff < 0) {
+  if (startMonthDiff < 0) {
     return 0
   }
 
@@ -55,20 +51,20 @@ export default function getFinanceInfo(obj, args) {
     month,
     year,
   } = args
-  
+
   // Calculate net worth
   const netWorth = getNetWorth(args)
-  
+
   // Get date anchors for comparison
   const compareDate = getCompareDate(month, year)
-  
+
   // Run through all amount saved functions
   const savingParams = SAVING_PARAMS
 
   let amountToSave = 0
-  for(let save of savingParams) {
+  savingParams.forEach(save => {
     amountToSave += calculateSavings({ compareDate, ...save })
-  }
+  })
 
   return {
     netWorth,

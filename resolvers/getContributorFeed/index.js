@@ -18,6 +18,6 @@ export default function getContributorFeed() {
       location: 'San Francisco',
     },
   ]
-  
+
   return contributors
 }
