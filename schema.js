@@ -8,6 +8,8 @@ type Contributor {
 type FinanceInfo {
   netWorth: Int!
   amountToSave: Int!
+  canSpend: Int!
+  compareMonth: String!
 }
 
 #returns list of contributors

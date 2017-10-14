@@ -4,9 +4,21 @@ import moment from 'moment'
 const SAVING_PARAMS = [
   {
     name: 'Taxes 2017',
-    perMonth: '400',
+    saveTotal: 5000,
     startSaving: moment().dayOfYear(1),
-    endSaving: moment().dayOfYear(365),
+    durationMonths: 12,
+  },
+  {
+    name: 'Burning Man 2018',
+    saveTotal: 2000,
+    startSaving: moment('2017-09-01'),
+    durationMonths: 12,
+  },
+  {
+    name: 'Snowboard',
+    saveTotal: 300,
+    startSaving: moment('2017-10-01'),
+    durationMonths: 4,
   },
 ]
 
@@ -19,7 +31,7 @@ function getNetWorth({ huntington, discover = 0, misc = 0 }) {
 // Gets reference point date
 function getCompareDate(month, year) {
   // Get next month if month not specified
-  if (!month && !month === 0) {
+  if (!month && month !== 0) {
     return moment().add(1, 'month')
   }
 
@@ -29,21 +41,20 @@ function getCompareDate(month, year) {
     : moment().month(month)
 }
 
-function calculateSavings({ compareDate, perMonth, startSaving, endSaving }) {
+function calculateSavings({ compareDate, saveTotal, startSaving, durationMonths }) {
   const startMonthDiff = compareDate.diff(startSaving, 'months') // rounds down positive
-  const endMonthDiff = compareDate.diff(endSaving, 'months')
+  const montlySave = saveTotal / durationMonths
 
-  // If negative, saving period has not started yet
-  if (startMonthDiff < 0) {
+  // Escape if saving period has not started yet or if past duration
+  if (startMonthDiff < 0 || startMonthDiff > durationMonths) {
     return 0
   }
 
-  // Compare date is during or before endMonth
-  const multiplier = endMonthDiff < 0
-    ? startMonthDiff
-    : startMonthDiff - endMonthDiff
+  return startMonthDiff * montlySave
+}
 
-  return multiplier * perMonth
+function getMonthCanSpend({ compareDate, netWorth, amountToSave }) {
+  return netWorth - amountToSave
 }
 
 export default function getFinanceInfo(obj, args) {
@@ -60,14 +71,19 @@ export default function getFinanceInfo(obj, args) {
 
   // Run through all amount saved functions
   const savingParams = SAVING_PARAMS
-
   let amountToSave = 0
   savingParams.forEach(save => {
     amountToSave += calculateSavings({ compareDate, ...save })
   })
+  amountToSave = Math.round(amountToSave)
+  
+  // Estimate spend for month
+  const canSpend = getMonthCanSpend({ compareDate, netWorth, amountToSave })
 
   return {
     netWorth,
     amountToSave,
+    canSpend,
+    compareMonth: compareDate.format('MMMM YYYY')
   }
 }
