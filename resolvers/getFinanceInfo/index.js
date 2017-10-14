@@ -53,7 +53,7 @@ function calculateSavings({ compareDate, saveTotal, startSaving, durationMonths 
   return startMonthDiff * montlySave
 }
 
-function getMonthCanSpend({ compareDate, netWorth, amountToSave }) {
+function getMonthCanSpend({ netWorth, amountToSave }) {
   return netWorth - amountToSave
 }
 
@@ -76,14 +76,14 @@ export default function getFinanceInfo(obj, args) {
     amountToSave += calculateSavings({ compareDate, ...save })
   })
   amountToSave = Math.round(amountToSave)
-  
+
   // Estimate spend for month
-  const canSpend = getMonthCanSpend({ compareDate, netWorth, amountToSave })
+  const canSpend = getMonthCanSpend({ netWorth, amountToSave })
 
   return {
     netWorth,
     amountToSave,
     canSpend,
-    compareMonth: compareDate.format('MMMM YYYY')
+    compareMonth: compareDate.format('MMMM YYYY'),
   }
 }
