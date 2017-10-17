@@ -11,3 +11,8 @@ npm-debug.log
 
 # vim
 *.swp
+
+
+# custom
+seed-data-financials.js
+

@@ -10,6 +10,12 @@ type FinanceInfo {
   amountToSave: Int!
   canSpend: Int!
   compareMonth: String!
+  daysLeft: Int
+  savingFor: [String]
+}
+
+type test {
+  success: Boolean
 }
 
 #returns list of contributors
@@ -22,6 +28,7 @@ type Query {
     month: Int,
     year: Int
   ): FinanceInfo
+  testFacebookMessenger: test
 }
 
 `

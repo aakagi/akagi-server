@@ -34,3 +34,10 @@ functions:
         path: graphiql
         method: get
         cors: true
+  fbMessengerWebhook:
+    handler: handler.fbMessengerWebhookHandler
+    events:
+    - http:
+        path: fb-messenger-webhook
+        method: get
+        cors: true
