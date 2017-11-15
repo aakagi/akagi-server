@@ -36,7 +36,7 @@ function calculateSavings({ compareDate, saveTotal, startSaving, durationMonths 
 }
 
 function getMonthCanSpend({ compareDate, netWorth, amountToSave, income }) {
-  // Get diff between 
+  // Get diff between
   // const compareDateDiff = compareDate.diff(moment(), 'months')
   // console.log('compareDateDiff', compareDateDiff)
   return netWorth - amountToSave

@@ -1,11 +1,9 @@
 'use strict' // eslint-disable-line strict
 
-import _ from 'lodash'
 import { makeExecutableSchema } from 'graphql-tools'
+import server from 'apollo-server-lambda'
 import { schema } from './schema'
 import { resolvers } from './resolvers'
-
-const server = require('apollo-server-lambda')
 
 const myGraphQLSchema = makeExecutableSchema({
   typeDefs: schema,
@@ -34,15 +32,14 @@ exports.fbMessengerWebhookHandler = function fbMessengerWebhookHandler(event, co
   const challenge = queryParams['hub.challenge']
 
   if (mode === 'subscribe' && verifyToken === process.env.WEBHOOK_VERIFICATION) {
-    console.log("Validating webhook")
+    console.log('Validating webhook')
     callback(null, {
-      body: challenge
+      body: challenge,
     })
-  }
-  else {
-    console.error("Failed validation. Make sure the validation tokens match.");
+  } else {
+    console.error('Failed validation. Make sure the validation tokens match.')
     callback(null, {
-      status: 403
+      status: 403,
     })
   }
 }

@@ -18,7 +18,7 @@ type test {
   success: Boolean
 }
 
-#returns list of contributors
+# returns list of contributors
 type Query {
   getContributorFeed : [Contributor]
   getFinanceInfo(
