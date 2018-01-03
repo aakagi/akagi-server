@@ -31,8 +31,7 @@ export default function akagiContactFormHandler(e, ctx, cb) {
   } = JSON.parse(e.body)
 
   sendEmail({
-    to: [submissionEmail],
-    bcc: ['alexanderakagi@gmail.com'],
+    to: ['alexanderakagi@gmail.com'],
     subject: `AKAGI.CO - ${submissionName}`,
     text: `
       Contact Form Submitted:
