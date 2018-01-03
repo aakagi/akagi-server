@@ -41,3 +41,10 @@ functions:
         path: fb-messenger-webhook
         method: get
         cors: true
+  akagiContactForm:
+    handler: handler.akagiContactFormHandler
+    events:
+    - http:
+        path: akagi-contact
+        method: post
+        cors: true
