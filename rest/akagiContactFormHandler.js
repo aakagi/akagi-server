@@ -46,6 +46,10 @@ export default function akagiContactFormHandler(e, ctx, cb) {
       body: JSON.stringify({
         message: 'Email submission successful!'
       }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
     })
   })
   .catch(err => {
