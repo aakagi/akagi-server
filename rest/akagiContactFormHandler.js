@@ -45,6 +45,7 @@ export default function akagiContactFormHandler(e, ctx, cb) {
     cb(null, {
       body: {
         message: 'Email submission successful!',
+        statusCode: 200
       },
     })
   })
