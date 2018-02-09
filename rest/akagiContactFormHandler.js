@@ -43,10 +43,9 @@ export default function akagiContactFormHandler(e, ctx, cb) {
   .then(msg => {
     // TODO: Make this a class
     cb(null, {
-      body: {
-        message: 'Email submission successful!',
-        statusCode: 200
-      },
+      body: JSON.stringify({
+        message: 'Email submission successful!'
+      }),
     })
   })
   .catch(err => {
