@@ -45,6 +45,6 @@ functions:
     handler: handler.akagiContactFormHandler
     events:
     - http:
-        path: akagi-contact
+        path: forms/contact-akagi
         method: post
         cors: true
