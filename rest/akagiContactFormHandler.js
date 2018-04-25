@@ -26,18 +26,30 @@ function sendEmail(options) {
 export default function akagiContactFormHandler(e, ctx, cb) {
   const {
     email: submissionEmail,
-    name: submissionName,
     message: submissionMessage,
   } = JSON.parse(e.body)
 
   sendEmail({
-    to: ['alexanderakagi@gmail.com'],
-    subject: `AKAGI.CO - ${submissionName}`,
+    to: ['alex@akagi.co', submissionEmail],
+    subject: `AKAGI.CO - ${submissionEmail}`,
     text: `
-      Contact Form Submitted:
-      Submission Email: ${submissionEmail}
-      Submission Name: ${submissionName}
-      Submission Message: ${submissionMessage}
+Email Context: ${submissionMessage}
+
+
+Hi, thanks for adding your email!
+
+This is just an automated email saying hey so you have my contact info.
+
+I'm primarily based out of SF, down to meet up whenever I have room in my schedule.
+
+Feel free to check out my stuff at https://akagi.co
+
+My lifestyle: https://medium.com/@akagi/living-lavish-out-of-a-backpack-61a80401d6a4
+My mission: https://medium.com/@akagi/heliocentric-ventures-master-plan-abd28eb3153a
+My location: https://akagi.co/location
+
+- Alex Akagi
+
     `,
   })
   .then(msg => {
