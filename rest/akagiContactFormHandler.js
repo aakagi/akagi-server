@@ -33,20 +33,21 @@ export default function akagiContactFormHandler(e, ctx, cb) {
     to: ['alex@akagi.co', submissionEmail],
     subject: `AKAGI.CO - ${submissionEmail}`,
     text: `
-Email Context: ${submissionMessage}
+What's the context?:
+${submissionMessage}
+
 
 
 Hi, thanks for adding your email!
 
-This is just an automated email saying hey so you have my contact info.
+This is just an automated email saying ~ hey ~ so you have my contact info.
 
-I'm primarily based out of SF, down to meet up whenever I have room in my schedule.
+I'm based out of SF & down to meet if I'm free.
 
-Feel free to check out my stuff at https://akagi.co
-
-My lifestyle: https://medium.com/@akagi/living-lavish-out-of-a-backpack-61a80401d6a4
-My mission: https://medium.com/@akagi/heliocentric-ventures-master-plan-abd28eb3153a
-My location: https://akagi.co/location
+Lifestyle - https://medium.com/@akagi/living-lavish-out-of-a-backpack-61a80401d6a4
+Mission - https://medium.com/@akagi/heliocentric-ventures-master-plan-abd28eb3153a
+Location Calendar - https://akagi.co/location
+Thoughts - https://akagi.co
 
 - Alex Akagi
 
@@ -56,7 +57,7 @@ My location: https://akagi.co/location
     // TODO: Make this a class
     cb(null, {
       body: JSON.stringify({
-        message: 'Email submission successful!'
+        message: 'Email submission successful! You should receive an email at any moment.'
       }),
       headers: {
         'Access-Control-Allow-Origin': '*',
