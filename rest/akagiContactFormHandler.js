@@ -7,7 +7,7 @@ const mg = mailgun({
 })
 
 const emailDefaults = {
-  from: "Robot Akagi <i-am-a-robot@akagi.co>",
+  from: 'Alex Akagi (bot) <i-am-a-robot@akagi.co>',
 }
 
 function sendEmail(options) {
@@ -40,16 +40,18 @@ ${submissionMessage}
 
 Hi, thanks for adding your email!
 
-This is just an automated email saying ~ hey ~ so you have my contact info.
+This is an automated email saying ~ hey ~ to give you my email & some info about me.
 
 I'm based out of SF & down to meet if I'm free.
+
+- Alex Akagi
+
+
 
 Lifestyle - https://medium.com/@akagi/living-lavish-out-of-a-backpack-61a80401d6a4
 Mission - https://medium.com/@akagi/heliocentric-ventures-master-plan-abd28eb3153a
 Location Calendar - https://akagi.co/location
 Thoughts - https://akagi.co
-
-- Alex Akagi
 
     `,
   })
