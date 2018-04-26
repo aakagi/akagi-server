@@ -7,7 +7,7 @@ const mg = mailgun({
 })
 
 const emailDefaults = {
-  from: 'Alex Akagi (bot) <i-am-a-robot@akagi.co>',
+  from: 'Alex Akagi (Automated) <alex@akagi.co>',
 }
 
 function sendEmail(options) {
@@ -37,20 +37,19 @@ What's the context?:
 ${submissionMessage}
 
 
+Hi, happy we've met!
 
-Hi, thanks for adding your email!
+This is an automated email saying ~ hey ~ and to exchange emails.
 
-This is an automated email saying ~ hey ~ to give you my email & some info about me.
+I also use this as a tool to give people I've just met an overview of who I am. Feel free to send me a blurb about yourself this way!
 
-I'm based out of SF & down to meet if I'm free.
+I'm based out of SF & down to meet whenever I'm free. I try to keep my location updated -> https://akagi.co/location
 
 - Alex Akagi
 
 
-
 Lifestyle - https://medium.com/@akagi/living-lavish-out-of-a-backpack-61a80401d6a4
 Mission - https://medium.com/@akagi/heliocentric-ventures-master-plan-abd28eb3153a
-Location Calendar - https://akagi.co/location
 Thoughts - https://akagi.co
 
     `,
@@ -59,7 +58,7 @@ Thoughts - https://akagi.co
     // TODO: Make this a class
     cb(null, {
       body: JSON.stringify({
-        message: 'Email submission successful! You should receive an email at any moment.'
+        message: 'Email submitted! You should receive an email within the next few minutes. Mailgun free-tier can be slow sometimes...'
       }),
       headers: {
         'Access-Control-Allow-Origin': '*',
